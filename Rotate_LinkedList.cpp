@@ -54,7 +54,7 @@ void printLinkedList(Node* node)
 {
   while(node!=NULL)
   {
-    cout<<node->data<<" -> ";
+    cout<<node->data<<" <- ";
     node = node->next;
   }
   cout<<"X"<<endl;
