@@ -5,6 +5,9 @@ struct Node
 {
   int data;
   Node* next;
+  Node(int data){
+    this->data = data;
+  }
 };
 
 void push(Node** head, int newData)
@@ -17,9 +20,9 @@ void push(Node** head, int newData)
 
 void pushAtTail(Node** head, int newData)
 {
-  Node* newNode = new Node();
+  Node* newNode = new Node(newData);
   Node* temp = *head;
-  newNode->data = newData;
+  //newNode->data = newData;
   newNode->next = NULL;
   if(*head == NULL)
   {
@@ -81,6 +84,7 @@ int main()
   push(&head1, 9);
   printLinkedList(head1);
   Node* head2 = NULL;
+  //push(&head2, 1);
   push(&head2, 1);
   //push(&head2, 4);
   //push(&head2, 8);

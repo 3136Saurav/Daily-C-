@@ -1,6 +1,116 @@
 #include<iostream>
 using namespace std;
 
+struct Node {
+  int data;
+  Node* next;
+};
+
+void pushAtHead(Node** head, int newData)
+{
+  Node* newNode = new Node();
+  newNode->data = newData;
+  newNode->next = *head;
+  *head = newNode;
+}
+
+void pushAtTail(Node** head, int newData)
+{
+  Node* newNode = new Node();
+  newNode->data = newData;
+  newNode->next = NULL;
+  if(*head == NULL)
+  {
+    *head = newNode;
+    return;
+  }
+  Node* curr = *head;
+  while(curr->next)
+    curr = curr->next;
+  curr->next = newNode;
+}
+
+void printLinkedList(Node* head)
+{
+  Node* curr = head;
+  while(curr)
+  {
+    cout<<curr->data<<" -> ";
+    curr = curr->next;
+  }
+  cout<<"X"<<endl;
+}
+
+void addOne(Node** head)
+{
+  Node* curr = *head;
+  int sum;
+  curr->data =  curr->data + 1;
+  sum = curr->data;
+  int carry = 0;
+  if(sum>9)
+  {
+    curr->data = sum%10;
+    carry = 1;
+  }
+  curr = curr->next;
+  while(curr)
+  {
+    cout<<curr->data<<" * "<<endl;
+    curr->data = curr->data + carry;
+    sum = curr->data;
+    if(sum>9)
+    {
+      curr->data = sum%10;
+      carry = 1;
+    }
+    else{
+      carry = 0;
+    }
+    curr = curr->next;
+  }
+  if(carry>0)
+  {
+    pushAtTail(head, carry);
+  }
+  printLinkedList(*head);
+}
+
+int main()
+{
+  Node* head = NULL;
+  pushAtHead(&head, 9);
+  //pushAtTail(&head, 9);
+  //pushAtHead(&head, 9);
+  printLinkedList(head);
+  addOne(&head);
+  return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+#include<iostream>
+using namespace std;
+
 struct Node
 {
   int data;
@@ -104,3 +214,4 @@ int main()
   //addOne(&head);
   return 0;
 }
+*/
