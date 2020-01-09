@@ -1,6 +1,99 @@
 #include<iostream>
 using namespace std;
 
+struct Node{
+  int data;
+  Node* next;
+};
+
+void pushAtHead(Node** head, int newData)
+{
+  Node* newNode = new Node();
+  newNode->data = newData;
+  newNode->next = *head;
+  *head = newNode;
+}
+
+void pushAtTail(Node** head, int newData)
+{
+  Node* newNode = new Node();
+  newNode->data = newData;
+  newNode->next = NULL;
+  Node* curr = *head;
+  if(*head == NULL)
+  {
+    *head = newNode;
+    return;
+  }
+  while(curr->next)
+    curr = curr->next;
+  curr->next = newNode;
+}
+
+void pushAfter(Node* prev, int newData)
+{
+  if(prev == NULL)
+    return;
+  Node* newNode = new Node();
+  newNode->data = newData;
+  newNode->next = prev->next;
+  prev->next = newNode;
+}
+
+void printLinkedList(Node* head)
+{
+  Node* curr = head;
+  while(curr)
+  {
+    cout<<curr->data<<" -> ";
+    curr = curr->next;
+  }
+  cout<<"X"<<endl;
+}
+
+Node* reverseInGroups(Node* head, int k)
+{
+  int count = 0;
+  Node* curr = head;
+  Node* next = NULL;
+  Node* prev = NULL;
+
+  while(curr && count<k){
+    next = curr->next;
+    curr->next = prev;
+    prev = curr;
+    curr = next;
+    count++;
+  }
+
+  if(next)
+    head->next = reverseInGroups(next, k);
+
+  return prev;
+}
+
+int main()
+{
+  Node* head = NULL;
+  pushAtHead(&head, 1);
+  pushAfter(head, 2);
+  pushAtTail(&head, 3);
+  pushAtTail(&head, 4);
+  pushAtTail(&head, 5);
+  pushAtTail(&head, 6);
+  pushAtTail(&head, 7);
+  pushAtTail(&head, 8);
+
+  printLinkedList(head);
+  Node* res = reverseInGroups(head, 3);
+  printLinkedList(res);
+
+  return 0;
+}
+
+/*#include<iostream>
+using namespace std;
+
 struct Node
 {
   int data;
@@ -90,3 +183,4 @@ int main()
   printLinkedList(head);
   return 0;
 }
+*/

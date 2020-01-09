@@ -1,4 +1,6 @@
-#include<bits/stdc++.h>
+//Review???
+
+/*#include<bits/stdc++.h>
 using namespace std;
 
 class Graph
@@ -69,5 +71,39 @@ int main()
        << "(starting from vertex 2) \n";
   g.BFS(2);
 
+  return 0;
+}
+*/
+
+
+
+
+
+
+
+#include<bits/stdc++.h>
+using namespace std;
+
+class Graph{
+  private:
+    int V;
+    list<int> adj[V];
+  public:
+    Graph(int V)
+    {
+      this->V = V;
+      adj = new list<int>[V];
+    }
+
+    void addEdge(int v, int w){
+      add[v].push_back(w);
+    }
+
+    void BFS(int s){
+
+    }
+}
+
+int main(){
   return 0;
 }
