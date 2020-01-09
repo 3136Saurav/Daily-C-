@@ -90,7 +90,7 @@ int main()
   pushAtHead(&head, 9);
   pushAfter(head->next->next, 2);
   printLinkedList(head);
-  insertNthfromEnd(&head, 999, 2);
+  insertNthfromEnd(&head, 11, 2);
   printLinkedList(head);
 
   return 0;

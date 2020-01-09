@@ -7,8 +7,6 @@ struct Node
   Node* next;
 };
 
-
-
 void pushAtHead(Node** head, int newData)
 {
   Node* newNode = new Node();

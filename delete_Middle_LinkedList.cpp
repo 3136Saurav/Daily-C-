@@ -83,6 +83,6 @@ int main()
   pushAtHead(&head, 1);
   printLinkedList(head);
   deleteMiddleLinkedList(&head);
-  
+
   return 0;
 }
