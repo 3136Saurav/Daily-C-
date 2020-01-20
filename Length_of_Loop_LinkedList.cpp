@@ -1,4 +1,4 @@
-#include<iostream>
+/*#include<iostream>
 using namespace std;
 
 struct Node
@@ -93,5 +93,79 @@ int main()
   printLinkedList(head);
   makeLoop(&head, 3);
   cout<<detectLengthLoop(head)<<endl;
+  return 0;
+}*/
+
+
+#include<iostream>
+using namespace std;
+
+struct Node{
+  int data;
+  Node* next;
+};
+
+void push(Node** head, int newData){
+  Node* newNode = new Node();
+  newNode->data = newData;
+  newNode->next = *head;
+  *head = newNode;
+}
+
+void printLinkedList(Node* head){
+  Node* curr = head;
+  while (curr) {
+    cout<<curr->data<<" -> ";
+    curr = curr->next;
+  }
+  cout<<"X"<<endl;
+}
+
+int countNodes(Node* n){
+  Node* temp = n;
+  int res = 1;
+  while(temp->next!=n){
+    res++;
+    temp = temp->next;
+  }
+  return res;
+}
+
+int detectLengthLoop(Node* head){
+  Node* slowPtr = head;
+  Node* fastPtr = head;
+  while(slowPtr && fastPtr && fastPtr->next){
+    slowPtr = slowPtr->next;
+    fastPtr = fastPtr->next->next;
+    if(slowPtr == fastPtr){
+      return countNodes(slowPtr);
+    }
+  }
+  return 0;
+}
+
+void makeLoop(Node** head, int k){
+  int count = 0;
+  Node* temp = *head;
+  while(count< k){
+    count++;
+    temp = temp->next;
+  }
+  Node* jointNode = temp;
+  while(temp->next)
+    temp = temp->next;
+  temp->next = jointNode;
+}
+
+int main(){
+  Node* head = NULL;
+  push(&head, 2);
+  push(&head, 4);
+  push(&head, 6);
+  push(&head, 8);
+  push(&head, 1);
+  printLinkedList(head);
+  makeLoop(&head, 2);
+  cout<<detectLengthLoop(head)<<" * "<<endl;
   return 0;
 }

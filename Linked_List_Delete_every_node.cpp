@@ -4,7 +4,7 @@ using namespace std;
 struct Node
 {
   int data;
-  Node* next;  
+  Node* next;
 };
 
 void deleteAllNodes(Node** head)
@@ -22,7 +22,7 @@ void deleteAllNodes(Node** head)
 void push(Node** head, int key)
 {
   Node* new_node = new Node();
-  new_node->data = data;
+  new_node->data = key;
   new_node->next = *head;
   *head = new_node;
 }

@@ -16,7 +16,7 @@ void printLinkedList(Node* node)
   }
   cout<<"X"<<endl;
 }
-
+/*
 void reverseLinkedList(Node** head)
 {
   Node* current = *head;
@@ -30,7 +30,7 @@ void reverseLinkedList(Node** head)
     current = nextPtr;
   }
   *head = prev;
-}
+}*/
 
 void pushAtHead(Node** head, int newData)
 {
@@ -66,6 +66,19 @@ void pushAfter(Node* prev, int newData)
   }
   newNode->next = prev->next;
   prev->next = newNode;
+}
+
+void reverseLinkedList(Node** head){
+  Node* curr = *head;
+  Node* prev = NULL;
+  Node* next = NULL;
+  while(curr){
+    next = curr->next;
+    curr->next = prev;
+    prev = curr;
+    curr = next;
+  }
+  *head = prev;
 }
 
 int main()

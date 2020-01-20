@@ -1,4 +1,4 @@
-#include<iostream>
+/*#include<iostream>
 #include<bits/stdc++.h>
 using namespace std;
 
@@ -73,6 +73,66 @@ int main()
   push(&head, 5);
   printLinkedList(head);
   removeDuplicatesUnordered(head);
+  printLinkedList(head);
+  return 0;
+}*/
+
+#include<bits/stdc++.h>
+using namespace std;
+
+struct Node{
+  int data;
+  Node* next;
+};
+
+void push(Node** head, int newData){
+  Node* newNode = new Node();
+  newNode->data = newData;
+  newNode->next = *head;
+  *head = newNode;
+}
+
+void printLinkedList(Node* head){
+  Node* curr = head;
+  while (curr) {
+    cout<<curr->data<<" -> ";
+    curr = curr->next;
+  }
+  cout<<"X"<<endl;
+}
+
+void removeDuplicatesUnordered(Node** head){
+  Node* curr = *head;
+  Node* prev = NULL;
+  map<int, bool> seen;
+  while(curr){
+    if(seen.find(curr->data) == seen.end()){
+      seen.insert(pair<int, bool>(curr->data, true));
+      prev = curr;
+    }
+    else{
+      prev->next = curr->next;
+      delete(curr);
+    }
+    curr = prev->next;
+  }
+}
+
+int main(){
+  Node* head = NULL;
+  push(&head, 2);
+  push(&head, 5);
+  push(&head, 3);
+  push(&head, 2);
+  push(&head, 5);
+  push(&head, 7);
+  push(&head, 8);
+  push(&head, 3);
+  push(&head, 2);
+  push(&head, 8);
+  push(&head, 2);
+  printLinkedList(head);
+  removeDuplicatesUnordered(&head);
   printLinkedList(head);
   return 0;
 }

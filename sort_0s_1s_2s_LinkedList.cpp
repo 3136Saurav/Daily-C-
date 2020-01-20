@@ -69,23 +69,60 @@ void sortZerosOnesTwos(Node* head)
     temp = temp->next;
   }
 
-  printLinkedList(zeroD);
-  printLinkedList(oneD);
-  printLinkedList(twoD);
+  if(zeroD){
+    Node* zeroCurr = zeroD;
+    Node* twoCurr = twoD;
 
+    while(zeroCurr->next){
+      zeroCurr = zeroCurr->next;
+    }
+
+    if(twoD){
+      zeroCurr->next = twoD;
+      while(twoCurr->next){
+        twoCurr = twoCurr->next;
+      }
+      twoCurr->next = oneD;
+    }
+
+    else{
+      zeroCurr->next = oneD;
+    }
+  }
+
+  else if(twoD){
+    zeroD = twoD;
+    Node* twoCurr = twoD;
+    while(twoCurr->next){
+      twoCurr = twoCurr->next;
+    }
+    if(oneD){
+      twoCurr->next = oneD;
+    }
+    else{
+      twoCurr->next = oneD;
+    }
+  }
+
+  else{
+    zeroD = oneD;
+  }
+
+  printLinkedList(zeroD);
+  //printLinkedList(twoD);
 }
 
 int main()
 {
   Node *head = NULL;
-  pushAtTail(&head, 0);
+  //pushAtTail(&head, 0);
   pushAtTail(&head, 2);
   pushAtTail(&head, 1);
-  pushAfter(head->next, 2);
+  //pushAfter(head->next, 2);
   pushAtTail(&head, 1);
-  pushAtTail(&head, 0);
+  //pushAtTail(&head, 0);
   pushAfter(head->next->next, 1);
-  pushAtTail(&head, 0);
+  //pushAtTail(&head, 0);
   printLinkedList(head);
   sortZerosOnesTwos(head);
   return 0;
